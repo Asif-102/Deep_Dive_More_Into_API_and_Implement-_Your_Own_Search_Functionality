@@ -12,8 +12,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-
+<body class="p-4">
+    <header class="mb-4">
+        <!-- search option -->
+        <div class="form-control w-1/2 mx-auto max-w-xs">
+            <label class="label">
+                <span class="label-text">Search Your Product</span>
+                <span class="label-text-alt">Press
+                    <kbd class="kbd kbd-sm">enter</kbd>
+                </span>
+            </label>
+            <input type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+        </div>
+    </header>
+    <main>
+        <div class="flex">
+            <div class="flex-none">
+                <!-- category menu -->
+                <ul class="menu bg-secondary text-secondary-content p-2 rounded-box">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                </ul>
+            </div>
+            <!-- products section -->
+            <div class="grow ml-1">
+                <ul class="menu bg-secondary text-secondary-content p-2 rounded-box">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
