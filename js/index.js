@@ -1,3 +1,8 @@
+const inputField = document.getElementById("search-category");
+const spinner = document.getElementById("spinner");
+
+const productsContainer = document.getElementById("products-container");
+
 const allMenus = [];
 
 const loadProducts = async () => {
@@ -13,20 +18,66 @@ const setMenus = async () => {
 
     // console.log(menus.children)
 
-    for(const product of allProducts)
-    {
+    for (const product of allProducts) {
         // console.log(product.category)
         // console.log(allMenus.indexOf(product.category))
-        if(allMenus.indexOf(product.category) === -1)
-        {
+        if (allMenus.indexOf(product.category) === -1) {
             allMenus.push(product.category);
 
             const li = document.createElement("li");
             li.innerHTML = `<a>${product.category}</a>`;
-            
+
             menus.appendChild(li);
         }
     }
 }
 
 setMenus();
+
+inputField.addEventListener("keypress", async (event) => {
+
+    if (event.key === "Enter") {
+        productsContainer.textContent = "";
+        // console.log(inputField.value);
+        displaySpinner(true);
+
+        const data = await loadProducts();
+
+        const foundProducts = data.filter(product => product.category.includes(inputField.value));
+
+        displaySpinner(false);
+
+        if (foundProducts.length) {
+            productsContainer.classList.add("grid", "grid-cols-4", "gap-4");
+
+            foundProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.innerHTML = `
+            <div class="card lg:card-side bg-base-100 shadow-xl">
+                <figure><img src=${product.image} alt="Shoes" class="w-full h-40"></figure>
+                <div class="card-body">
+                    <p>${product.category}</p>
+                    <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Listen</button>
+                    </div>
+                </div>
+            </div>
+                `
+                productsContainer.appendChild(card);
+            });
+        }
+        else {
+            productsContainer.classList.remove("grid", "grid-cols-4", "gap-4");
+            productsContainer.innerHTML = `<h2 class="text-center text-orange-500 text-2xl">Products Not Found</h2>`
+        }
+    }
+})
+
+const displaySpinner = (display) => {
+    if (display) {
+        spinner.classList.remove("hidden");
+    }
+    else {
+        spinner.classList.add("hidden");
+    }
+}

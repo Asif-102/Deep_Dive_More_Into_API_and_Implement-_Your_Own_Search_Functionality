@@ -22,26 +22,25 @@
                     <kbd class="kbd kbd-sm">enter</kbd>
                 </span>
             </label>
-            <input type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
+            <input id="search-category" type="text" placeholder="Search here" class="input input-bordered w-full max-w-xs" />
         </div>
+        <!-- spinner -->
+        <progress id="spinner" class="progress w-full hidden"></progress>
+
     </header>
     <main>
         <div class="flex">
             <div class="flex-none">
                 <!-- category menu -->
-                <ul id="all-menus" class="menu bg-sky-700 text-secondary-content p-2 rounded-box">
+                <ul id="all-menus" class="menu bg-secondary text-secondary-content p-2 rounded-box">
                     <!-- <li><a>Item 1</a></li>
                     <li><a>Item 2</a></li>
                     <li><a>Item 3</a></li> -->
                 </ul>
             </div>
             <!-- products section -->
-            <div class="grow ml-1">
-                <ul class="menu bg-secondary text-secondary-content p-2 rounded-box">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                    <li><a>Item 3</a></li>
-                </ul>
+            <div class="grow ml-1 grid grid-cols-4 gap-4" id="products-container">
+                
             </div>
         </div>
     </main>
