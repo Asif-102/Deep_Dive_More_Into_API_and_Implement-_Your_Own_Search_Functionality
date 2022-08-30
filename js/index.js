@@ -51,17 +51,18 @@ inputField.addEventListener("keypress", async (event) => {
             productsContainer.classList.add("grid", "grid-cols-4", "gap-4");
 
             foundProducts.forEach(product => {
+
                 const card = document.createElement("div");
                 card.innerHTML = `
-            <div class="card lg:card-side bg-base-100 shadow-xl">
-                <figure><img src=${product.image} alt="Shoes" class="w-full h-40"></figure>
+                <div class="card card-compact bg-base-100 shadow-xl">
+                <figure><img src=${product.image} alt="Shoes" class="h-40 w-full"/></figure>
                 <div class="card-body">
-                    <p>${product.category}</p>
-                    <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Listen</button>
-                    </div>
+                  <h2 class="card-title">${product.title.length > 20 ? product.title.slice(0,20)+'...' : product.title}</h2>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Show More</button>
+                  </div>
                 </div>
-            </div>
+              </div>
                 `
                 productsContainer.appendChild(card);
             });
