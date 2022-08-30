@@ -55,11 +55,11 @@ inputField.addEventListener("keypress", async (event) => {
                 const card = document.createElement("div");
                 card.innerHTML = `
                 <div class="card card-compact bg-base-100 shadow-xl">
-                <figure><img src=${product.image} alt="Shoes" class="h-40 w-full"/></figure>
+                <figure><img src=${product.image} alt="Shoes" class="h-60 w-full"/></figure>
                 <div class="card-body">
                   <h2 class="card-title">${product.title.length > 20 ? product.title.slice(0,20)+'...' : product.title}</h2>
                   <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Show More</button>
+                    <label for="my-modal-3" class="btn btn-primary modal-button" onclick="openModal('${product.description}', '${product.image}')">Show Details</label>
                   </div>
                 </div>
               </div>
@@ -81,4 +81,14 @@ const displaySpinner = (display) => {
     else {
         spinner.classList.add("hidden");
     }
+}
+
+const openModal = (description, image) =>{
+    console.log(image);
+    const modal = document.getElementById("modal-body");
+    modal.textContent = "";
+
+    modal.innerHTML = `<p>${description}</p>
+        <img src="${image}"/>
+    `
 }
